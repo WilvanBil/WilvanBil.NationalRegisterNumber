@@ -1,4 +1,5 @@
 using FluentAssertions;
+using FsCheck.Xunit;
 using Xunit;
 
 namespace WilvanBil.NationalRegisterNumber.UnitTests;
@@ -49,6 +50,21 @@ public class NationalRegisterNumberTests
         // Assert
         var assertion = NationalRegisterNumberGenerator.IsValid(result);
         assertion.Should().BeTrue();
+    }
+
+    /// <summary>
+    /// Ensures the NationalRegisterNumberGenerator.Generate method produces valid results for any DateTime input.
+    /// FsCheck generates a wide range of random and edge-case DateTime values for testing.
+    /// </summary>
+    /// <param name="datetime">The randomly generated DateTime input.</param>
+    [Property(Verbose = true)]
+    public void GenerateShouldWorkForAnyDateTime(DateTime datetime)
+    {
+        // Act
+        var nationalRegisterNumber = NationalRegisterNumberGenerator.Generate(DateOnly.FromDateTime(datetime));
+
+        // Assert
+        Assert.True(NationalRegisterNumberGenerator.IsValid(nationalRegisterNumber));
     }
 
     [Fact]
