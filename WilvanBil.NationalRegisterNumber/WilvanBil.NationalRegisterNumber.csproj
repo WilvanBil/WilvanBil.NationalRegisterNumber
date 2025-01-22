@@ -18,7 +18,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © WilvanBil 2025</Copyright>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   
