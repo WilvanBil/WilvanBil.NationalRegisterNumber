@@ -1,5 +1,4 @@
 using FluentAssertions;
-using NationalRegisterNumber;
 using NUnit.Framework;
 
 namespace NationalRegisterNumber.UnitTests;
@@ -210,5 +209,19 @@ public class NationalRegisterNumberTests
         var digit = int.Parse(result[8].ToString());
         var even = digit % 2 == 0;
         even.Should().BeTrue();
+    }
+
+    [Test]
+    public void GenerateWithBirthdateShouldWork()
+    {
+        // Arrange
+        var birthDate = new DateTime(2020, 9, 16);
+
+        // Act
+        var result = NationalRegisterNumberGenerator.Generate(birthDate);
+
+        // Assert
+        var assertion = NationalRegisterNumberGenerator.IsValid(result);
+        assertion.Should().BeTrue();
     }
 }
