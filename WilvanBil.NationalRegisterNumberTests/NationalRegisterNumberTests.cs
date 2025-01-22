@@ -1,12 +1,12 @@
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace WilvanBil.NationalRegisterNumber.UnitTests;
 
-[TestFixture]
 public class NationalRegisterNumberTests
 {
-    [TestCase("90022742191")]
+    [Theory]
+    [InlineData("90022742191")]
     public void ValidateShouldReturnTrue(string nationalRegisterNumber)
     {
         // Act
@@ -16,16 +16,17 @@ public class NationalRegisterNumberTests
         result.Should().BeTrue();
     }
 
-    [TestCase("12345678910")]
-    [TestCase("12345621748")]
-    [TestCase("12345621777")]
-    [TestCase("Test")]
-    [TestCase("00000000000")]
-    [TestCase("99999999999")]
-    [TestCase("!@#!@%^@^@$^&@$^@sdfasdf")]
-    [TestCase("$^@#^@##$44")]
-    [TestCase("15435#$%4354dfsg")]
-    [TestCase("90022742192")]
+    [Theory]
+    [InlineData("12345678910")]
+    [InlineData("12345621748")]
+    [InlineData("12345621777")]
+    [InlineData("Test")]
+    [InlineData("00000000000")]
+    [InlineData("99999999999")]
+    [InlineData("!@#!@%^@^@$^&@$^@sdfasdf")]
+    [InlineData("$^@#^@##$44")]
+    [InlineData("15435#$%4354dfsg")]
+    [InlineData("90022742192")]
     public void ValidateShouldReturnFalse(string nationalRegisterNumber)
     {
         // Act
@@ -35,7 +36,7 @@ public class NationalRegisterNumberTests
         result.Should().BeFalse();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithBirthdateAndFollowNumberShouldWork()
     {
         // Arrange
@@ -50,7 +51,7 @@ public class NationalRegisterNumberTests
         assertion.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateShouldWork()
     {
         // Act
@@ -61,7 +62,7 @@ public class NationalRegisterNumberTests
         assertion.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithOldDateShouldThrowException()
     {
         // Arrange
@@ -74,10 +75,11 @@ public class NationalRegisterNumberTests
         result.Should().Throw<ArgumentException>();
     }
 
-    [TestCase(0)]
-    [TestCase(999)]
-    [TestCase(10234)]
-    [TestCase(-50)]
+    [Theory]
+    [InlineData(0)]
+    [InlineData(999)]
+    [InlineData(10234)]
+    [InlineData(-50)]
     public void GenerateWithWrongFollowNumberShouldThrowException(int followNumber)
     {
         // Arrange
@@ -90,7 +92,7 @@ public class NationalRegisterNumberTests
         result.Should().Throw<ArgumentException>();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithBirthDateShouldWork()
     {
         // Arrange
@@ -104,7 +106,7 @@ public class NationalRegisterNumberTests
         assertion.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithBiologicalSexFemaleShouldWork()
     {
         // Act
@@ -118,7 +120,7 @@ public class NationalRegisterNumberTests
         even.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithBiologicalSexmaleShouldWork()
     {
         // Act
@@ -132,7 +134,7 @@ public class NationalRegisterNumberTests
         uneven.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithBirthDateAndBiologicalSexShouldWork()
     {
         // Arrange
@@ -150,7 +152,7 @@ public class NationalRegisterNumberTests
         uneven.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithDateRangeShouldWork()
     {
         // Arrange
@@ -165,7 +167,7 @@ public class NationalRegisterNumberTests
         assertion.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithWrongDateRangeShouldThrowError()
     {
         // Arrange
@@ -179,7 +181,7 @@ public class NationalRegisterNumberTests
         result.Should().Throw<ArgumentException>();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithDateRangeAndBiologicalSexShouldWork()
     {
         // Arrange
@@ -198,7 +200,7 @@ public class NationalRegisterNumberTests
         even.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void GenerateWithBirthdateShouldWork()
     {
         // Arrange
