@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.1.0"></a>
+## [2.1.0](https://www.github.com/WilvanBil/NationalRegisterNumber/releases/tag/v2.1.0) (2025-01-22)
+
+### Features
+
+* Added `ToFormattedNationalRegisterNumber()` for readable output. ([d04f0e1](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/d04f0e1b2f8896239f950daeff2f68b54b5e4c96))
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://www.github.com/WilvanBil/NationalRegisterNumber/releases/tag/v2.0.1) (2025-01-22)
 
