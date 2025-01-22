@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NationalRegisterNumber\WilvanBil.NationalRegisterNumber.csproj" />
     <ProjectReference Include="..\WilvanBil.NationalRegisterNumber\WilvanBil.NationalRegisterNumber.csproj" />
   </ItemGroup>
 

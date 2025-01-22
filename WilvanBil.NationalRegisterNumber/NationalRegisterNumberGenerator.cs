@@ -1,21 +1,26 @@
-using System.Globalization;
-
 namespace WilvanBil.NationalRegisterNumber;
 
+/// <summary>
+/// Provides methods to generate and validate Belgian national register numbers.
+/// </summary>
 public static class NationalRegisterNumberGenerator
 {
+    private const int NationalRegisterNumberLength = 11;
+    private const int BirthDateLength = 6;
+    private const int BirthDateWithControlNumberLength = 9;
     private const int Divisor = 97;
     private const int FollowNumberMin = 1;
     private const int FollowNumberMax = 998;
 
-    private static readonly DateTime AbsoluteMinDate = new(1900, 1, 1);
-    private static readonly Random Randomizer = new();
+    private static readonly DateOnly _absoluteMinDate = new(1900, 1, 1);
+    private static readonly Random _randomizer = Random.Shared;
+    private static readonly TimeProvider _timeProvider = TimeProvider.System;
 
     /// <summary>
-    /// Validates strings if it's a valid national register number for Belgium.
+    /// Validates whether a given string is a valid Belgian national register number.
     /// </summary>
-    /// <param name="nationalRegisterNumber"></param>
-    /// <returns>true if it's valid, otherwise false</returns>
+    /// <param name="nationalRegisterNumber">The national register number to validate.</param>
+    /// <returns><c>true</c> if the number is valid; otherwise, <c>false</c>.</returns>
     public static bool IsValid(string nationalRegisterNumber)
     {
         // Sanitize input
@@ -26,34 +31,28 @@ public static class NationalRegisterNumberGenerator
         string numbersOnly = new(nationalRegisterNumber.Trim().Where(x => char.IsDigit(x)).ToArray());
 
         // Check null and length
-        if (string.IsNullOrEmpty(numbersOnly) || numbersOnly.Length != 11)
+        if (string.IsNullOrEmpty(numbersOnly) || numbersOnly.Length != NationalRegisterNumberLength)
             return false;
 
-        // check date
-
-        if (!DateTime.TryParseExact(
-         numbersOnly[..6],
-         "yyMMdd",
-         CultureInfo.InvariantCulture,
-         DateTimeStyles.None,
-         out var d))
+        var possibleBirthDate = numbersOnly[..BirthDateLength];
+        if (!DateOnly.TryParseExact(numbersOnly[..BirthDateLength], "yyMMdd", out var birthDate))
             return false;
 
         // Check control number
-        if (!long.TryParse(numbersOnly[..9], out var dividend))
+        if (!long.TryParse(numbersOnly[..BirthDateWithControlNumberLength], out var dividend))
             return false;
 
         var remainder = dividend % Divisor;
         var controlNumber = Divisor - remainder;
 
-        if (!long.TryParse(numbersOnly[9..], out var actualControlNumber))
+        if (!long.TryParse(numbersOnly[BirthDateWithControlNumberLength..], out var actualControlNumber))
             return false;
 
         // Born before 2000/01/01
         if (controlNumber == actualControlNumber)
             return true;
 
-        if (!long.TryParse($"2{numbersOnly[..9]}", out dividend))
+        if (!long.TryParse($"2{numbersOnly[..BirthDateWithControlNumberLength]}", out dividend))
             return false;
 
         remainder = dividend % Divisor;
@@ -63,14 +62,20 @@ public static class NationalRegisterNumberGenerator
         return controlNumber == actualControlNumber;
     }
 
-    public static string Generate(DateTime birthDate, int followNumber)
+    /// <summary>
+    /// Generates a Belgian national register number based on a given birth date and follow number.
+    /// </summary>
+    /// <param name="birthDate">The birth date of the individual.</param>
+    /// <param name="followNumber">The follow number (1-998) for the individual.</param>
+    /// <returns>The generated national register number.</returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown if the birth date is before the minimum allowed date or the follow number is out of range.
+    /// </exception>
+    public static string Generate(DateOnly birthDate, int followNumber)
     {
         // Sanitize
-        if (birthDate < AbsoluteMinDate)
-            throw new ArgumentException($"Birthdate can't be before {AbsoluteMinDate.ToShortDateString()}", nameof(birthDate));
-
-        if (birthDate > DateTime.Today)
-            throw new ArgumentException($"Date of birth should be before today {DateTime.Today.ToShortDateString()}", nameof(birthDate));
+        if (birthDate < _absoluteMinDate)
+            throw new ArgumentException($"Birthdate can't be before {_absoluteMinDate.ToShortDateString()}", nameof(birthDate));
 
         if (followNumber < FollowNumberMin || followNumber > FollowNumberMax)
             throw new ArgumentException("Follow number should be (inclusive) between 1 and 998", nameof(followNumber));
@@ -92,12 +97,50 @@ public static class NationalRegisterNumberGenerator
         return $"{birthDatePart}{followNumberPart}{controlNumberPart}";
     }
 
+    /// <summary>
+    /// Generates a random valid Belgian national register number.
+    /// </summary>
+    /// <returns>The generated national register number.</returns>
     public static string Generate() => Generate(GenerateBirthDate(), GenerateFollowNumber());
-    public static string Generate(DateTime birthDate) => Generate(birthDate, GenerateFollowNumber());
+
+    /// <summary>
+    /// Generates a Belgian national register number for a given birth date with a random follow number.
+    /// </summary>
+    /// <param name="birthDate">The birth date of the individual.</param>
+    /// <returns>The generated national register number.</returns>
+    public static string Generate(DateOnly birthDate) => Generate(birthDate, GenerateFollowNumber());
+
+    /// <summary>
+    /// Generates a Belgian national register number for a random birth date and a follow number based on the given biological sex.
+    /// </summary>
+    /// <param name="sex">The biological sex of the individual.</param>
+    /// <returns>The generated national register number.</returns>
     public static string Generate(BiologicalSex sex) => Generate(GenerateBirthDate(), GenerateFollowNumber(sex));
-    public static string Generate(DateTime birthDate, BiologicalSex sex) => Generate(birthDate, GenerateFollowNumber(sex));
-    public static string Generate(DateTime minDate, DateTime maxDate) => Generate(GenerateBirthDate(minDate, maxDate));
-    public static string Generate(DateTime minDate, DateTime maxDate, BiologicalSex sex) => Generate(GenerateBirthDate(minDate, maxDate), sex);
+
+    /// <summary>
+    /// Generates a Belgian national register number for a given birth date and a follow number based on the given biological sex.
+    /// </summary>
+    /// <param name="birthDate">The birth date of the individual.</param>
+    /// <param name="sex">The biological sex of the individual.</param>
+    /// <returns>The generated national register number.</returns>
+    public static string Generate(DateOnly birthDate, BiologicalSex sex) => Generate(birthDate, GenerateFollowNumber(sex));
+
+    /// <summary>
+    /// Generates a Belgian national register number for a random birth date within the specified date range.
+    /// </summary>
+    /// <param name="minDate">The minimum birth date in the range.</param>
+    /// <param name="maxDate">The maximum birth date in the range.</param>
+    /// <returns>The generated national register number.</returns>
+    public static string Generate(DateOnly minDate, DateOnly maxDate) => Generate(GenerateBirthDate(minDate, maxDate));
+
+    /// <summary>
+    /// Generates a Belgian national register number for a random birth date within the specified date range and a follow number based on the given biological sex.
+    /// </summary>
+    /// <param name="minDate">The minimum birth date in the range.</param>
+    /// <param name="maxDate">The maximum birth date in the range.</param>
+    /// <param name="sex">The biological sex of the individual.</param>
+    /// <returns>The generated national register number.</returns>
+    public static string Generate(DateOnly minDate, DateOnly maxDate, BiologicalSex sex) => Generate(GenerateBirthDate(minDate, maxDate), sex);
 
     private static int GenerateFollowNumber(BiologicalSex sex)
     {
@@ -115,14 +158,14 @@ public static class NationalRegisterNumberGenerator
 
         return followNumber;
     }
-    private static int GenerateFollowNumber() => Randomizer.Next(FollowNumberMin, FollowNumberMax);
-    private static DateTime GenerateBirthDate() => GenerateBirthDate(AbsoluteMinDate, DateTime.Today);
-    private static DateTime GenerateBirthDate(DateTime minDate, DateTime maxDate)
+    private static int GenerateFollowNumber() => _randomizer.Next(FollowNumberMin, FollowNumberMax);
+    private static DateOnly GenerateBirthDate() => GenerateBirthDate(_absoluteMinDate, DateOnly.FromDateTime(_timeProvider.GetUtcNow().Date));
+    private static DateOnly GenerateBirthDate(DateOnly minDate, DateOnly maxDate)
     {
         if (minDate > maxDate)
             throw new ArgumentException($"Minimum date {minDate} can't be after maximum date {maxDate}");
 
-        var range = (maxDate.Date - minDate.Date).Days;
-        return minDate.Date.AddDays(Randomizer.Next(range));
+        var range = (maxDate.ToDateTime(TimeOnly.MinValue) - minDate.ToDateTime(TimeOnly.MinValue)).Days;
+        return minDate.AddDays(_randomizer.Next(range));
     }
 }

@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WilvanBil.NationalRegisterN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WilvanBil.NationalRegisterNumber.UnitTests", "WilvanBil.NationalRegisterNumberTests\WilvanBil.NationalRegisterNumber.UnitTests.csproj", "{6E84D283-F49E-443A-AFAF-50F997A17CFA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B18160A0-582A-4434-86D5-6C0E2FB1DEDF}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

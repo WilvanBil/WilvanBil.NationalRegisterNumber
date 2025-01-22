@@ -39,7 +39,7 @@ public class NationalRegisterNumberTests
     public void GenerateWithBirthdateAndFollowNumberShouldWork()
     {
         // Arrange
-        var birthDate = new DateTime(1990, 1, 1);
+        var birthDate = new DateOnly(1990, 1, 1);
         var followNumber = 16;
 
         // Act
@@ -65,23 +65,10 @@ public class NationalRegisterNumberTests
     public void GenerateWithOldDateShouldThrowException()
     {
         // Arrange
-        var reallyOldDate = new DateTime(1889, 12, 5);
+        var reallyOldDate = new DateOnly(1889, 12, 5);
 
         // Act
         var result = () => NationalRegisterNumberGenerator.Generate(reallyOldDate);
-
-        // Assert
-        result.Should().Throw<ArgumentException>();
-    }
-
-    [Test]
-    public void GenerateWithFutureDateShouldThrowException()
-    {
-        // Arrange
-        var futureDate = DateTime.Today.AddDays(10);
-
-        // Act
-        var result = () => NationalRegisterNumberGenerator.Generate(futureDate);
 
         // Assert
         result.Should().Throw<ArgumentException>();
@@ -94,7 +81,7 @@ public class NationalRegisterNumberTests
     public void GenerateWithWrongFollowNumberShouldThrowException(int followNumber)
     {
         // Arrange
-        var validDate = new DateTime(1998, 1, 1);
+        var validDate = new DateOnly(1998, 1, 1);
 
         // Act
         var result = () => NationalRegisterNumberGenerator.Generate(validDate, followNumber);
@@ -107,7 +94,7 @@ public class NationalRegisterNumberTests
     public void GenerateWithBirthDateShouldWork()
     {
         // Arrange
-        var birthdate = new DateTime(2000, 1, 1);
+        var birthdate = new DateOnly(2000, 1, 1);
 
         // Act
         var result = NationalRegisterNumberGenerator.Generate(birthdate);
@@ -149,7 +136,7 @@ public class NationalRegisterNumberTests
     public void GenerateWithBirthDateAndBiologicalSexShouldWork()
     {
         // Arrange
-        var birthdate = new DateTime(2000, 1, 1);
+        var birthdate = new DateOnly(2000, 1, 1);
         var sex = BiologicalSex.Male;
 
         // Act
@@ -167,8 +154,8 @@ public class NationalRegisterNumberTests
     public void GenerateWithDateRangeShouldWork()
     {
         // Arrange
-        var minDate = new DateTime(2000, 1, 1);
-        var maxDate = new DateTime(2010, 12, 31);
+        var minDate = new DateOnly(2000, 1, 1);
+        var maxDate = new DateOnly(2010, 12, 31);
 
         // Act
         var result = NationalRegisterNumberGenerator.Generate(minDate, maxDate);
@@ -182,8 +169,8 @@ public class NationalRegisterNumberTests
     public void GenerateWithWrongDateRangeShouldThrowError()
     {
         // Arrange
-        var minDate = new DateTime(2005, 1, 1);
-        var maxDate = new DateTime(1997, 12, 31);
+        var minDate = new DateOnly(2005, 1, 1);
+        var maxDate = new DateOnly(1997, 12, 31);
 
         // Act
         var result = () => NationalRegisterNumberGenerator.Generate(minDate, maxDate);
@@ -196,8 +183,8 @@ public class NationalRegisterNumberTests
     public void GenerateWithDateRangeAndBiologicalSexShouldWork()
     {
         // Arrange
-        var minDate = new DateTime(2000, 1, 1);
-        var maxDate = new DateTime(2010, 12, 31);
+        var minDate = new DateOnly(2000, 1, 1);
+        var maxDate = new DateOnly(2010, 12, 31);
         var sex = BiologicalSex.Female;
 
         // Act
@@ -215,7 +202,7 @@ public class NationalRegisterNumberTests
     public void GenerateWithBirthdateShouldWork()
     {
         // Arrange
-        var birthDate = new DateTime(2020, 9, 16);
+        var birthDate = new DateOnly(2020, 9, 16);
 
         // Act
         var result = NationalRegisterNumberGenerator.Generate(birthDate);
