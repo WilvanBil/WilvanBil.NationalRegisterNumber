@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NationalRegisterNumber\NationalRegisterNumber.csproj" />
+    <ProjectReference Include="..\NationalRegisterNumber\WilvanBil.NationalRegisterNumber.csproj" />
+    <ProjectReference Include="..\WilvanBil.NationalRegisterNumber\WilvanBil.NationalRegisterNumber.csproj" />
   </ItemGroup>
 
 </Project>

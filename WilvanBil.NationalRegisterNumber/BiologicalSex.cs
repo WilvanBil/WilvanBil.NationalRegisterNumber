@@ -1,4 +1,4 @@
-﻿namespace NationalRegisterNumber;
+﻿namespace WilvanBil.NationalRegisterNumber;
 
 public enum BiologicalSex
 {

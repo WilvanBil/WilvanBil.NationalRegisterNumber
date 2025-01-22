@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace NationalRegisterNumber;
+namespace WilvanBil.NationalRegisterNumber;
 
 public static class NationalRegisterNumberGenerator
 {
@@ -112,6 +112,7 @@ public static class NationalRegisterNumberGenerator
             if (followNumber % 2 == 0)
                 followNumber--;
         }
+
         return followNumber;
     }
     private static int GenerateFollowNumber() => Randomizer.Next(FollowNumberMin, FollowNumberMax);
@@ -124,5 +125,4 @@ public static class NationalRegisterNumberGenerator
         var range = (maxDate.Date - minDate.Date).Days;
         return minDate.Date.AddDays(Randomizer.Next(range));
     }
-
 }

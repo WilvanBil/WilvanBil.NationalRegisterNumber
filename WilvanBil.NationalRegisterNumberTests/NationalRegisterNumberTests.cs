@@ -1,7 +1,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace NationalRegisterNumber.UnitTests;
+namespace WilvanBil.NationalRegisterNumber.UnitTests;
 
 [TestFixture]
 public class NationalRegisterNumberTests
