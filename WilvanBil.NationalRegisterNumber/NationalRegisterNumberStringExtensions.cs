@@ -1,6 +1,9 @@
 ﻿
 namespace WilvanBil.NationalRegisterNumber;
 
+/// <summary>
+/// Provides extension methods for working with Belgian National Register Numbers as strings.
+/// </summary>
 public static class NationalRegisterNumberStringExtensions
 {
     /// <summary>

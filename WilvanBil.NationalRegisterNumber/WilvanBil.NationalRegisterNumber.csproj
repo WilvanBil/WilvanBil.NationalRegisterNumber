@@ -19,6 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © WilvanBil 2025</Copyright>
     <Version>2.1.0</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   
   <ItemGroup>
@@ -28,7 +29,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <None Include="$(OutputPath)WilvanBil.NationalRegisterNumber.xml">
+      <Pack>true</Pack>
+      <PackagePath>lib\$(TargetFramework)\</PackagePath>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <None Remove="bin\**" />
     <None Remove="obj\**" />
