@@ -20,6 +20,14 @@
     <Copyright>Copyright © WilvanBil 2025</Copyright>
     <Version>2.0.1</Version>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="bin\**" />
