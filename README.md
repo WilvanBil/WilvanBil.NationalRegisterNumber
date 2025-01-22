@@ -52,24 +52,14 @@ string number = NationalRegisterNumberGenerator.Generate(DateOnly birthDate, int
 You can format Belgian National Register Numbers into the official format (`YY.MM.DD-XXX.CC`) using the `ToFormattedNationalRegisterNumber` string extension method.
 
 ```csharp
-using WilvanBil.NationalRegisterNumber;
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        string nationalRegisterNumber = "90020200395";
-        string formattedNumber = nationalRegisterNumber.ToFormattedNationalRegisterNumber();
-
-        Console.WriteLine(formattedNumber); // Output: 90.02.02-003.95
-    }
-}
+string nationalRegisterNumber = "90020200395";
+string formattedNumber = nationalRegisterNumber.ToFormattedNationalRegisterNumber();
+Console.WriteLine(formattedNumber); // Output: 90.02.02-003.95
 ```
 ### Notes:
 - **Input Validation**: The method will return the original string if:
   - The input is null, empty, or not exactly 11 characters.
   - You can combine this with the `IsValid` method from `NationalRegisterNumberGenerator` for additional validation.
-- **Flexible Usage**: Works seamlessly with any `string` containing a valid Belgian National Register Number.
 
 #### **Parameters**
 
@@ -91,10 +81,10 @@ bool isValid = NationalRegisterNumberGenerator.IsValid("90022742191");
 Console.WriteLine($"Is valid: {isValid}");
 ```
 
-### Generate a Random National Register Number
+### Generate and format a Random National Register Number
 ```csharp
 string randomNumber = NationalRegisterNumberGenerator.Generate();
-Console.WriteLine($"Generated number: {randomNumber}");
+Console.WriteLine($"Generated number: {randomNumber.ToFormattedNationalRegisterNumber()}");
 ```
 
 ### Generate with Specific Parameters
@@ -120,6 +110,9 @@ We welcome contributions to this package! To get started:
    ```
 4. Make your changes and ensure all tests pass.
 5. Submit a pull request with a clear description of your changes.
+
+### Issues
+For any issues, requests or any other kind of feedback, please consider creating an [issue](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/issues/new?template=Blank+issue).
 
 ### Running Tests
 
