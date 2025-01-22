@@ -16,7 +16,7 @@ jobs:
     - name: Build Project
       run: dotnet build --configuration Release --no-restore
     - name: Run Tests
-      run: dotnet test --no-build--verbosity detailed
+      run: dotnet test
     - name: Pack NuGet Package
       run: dotnet pack --configuration Release --output ./artifacts
     - name: Publish to NuGet
