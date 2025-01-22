@@ -1,4 +1,4 @@
-name: Publish NuGet Package
+name: Publish Package
 on:
   workflow_dispatch: # Manually triggered workflow
     inputs:
@@ -39,3 +39,4 @@ jobs:
           This release includes the latest changes and updates. Review the CHANGELOG for details.
         draft: false
         prerelease: false
+
