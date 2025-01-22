@@ -8,7 +8,7 @@
 ## Features
 - **Validation**: Verify if a given national register number is valid.
 - **Generation**: Generate valid national register numbers with flexible parameters such as birth date and biological sex.
-
+- **Formatting**: Can format a `string` to `YY.MM.DD-XXX.CC` format using `ToFormattedNationalRegisterNumber()` string extension method.
 ---
 
 ## Installation
@@ -47,6 +47,29 @@ string number = NationalRegisterNumberGenerator.Generate(DateOnly minDate, DateO
 string number = NationalRegisterNumberGenerator.Generate(DateOnly minDate, DateOnly maxDate, BiologicalSex sex);
 string number = NationalRegisterNumberGenerator.Generate(DateOnly birthDate, int followNumber);
 ```
+
+### **Formatting**
+You can format Belgian National Register Numbers into the official format (`YY.MM.DD-XXX.CC`) using the `ToFormattedNationalRegisterNumber` string extension method.
+
+```csharp
+using WilvanBil.NationalRegisterNumber;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string nationalRegisterNumber = "90020200395";
+        string formattedNumber = nationalRegisterNumber.ToFormattedNationalRegisterNumber();
+
+        Console.WriteLine(formattedNumber); // Output: 90.02.02-003.95
+    }
+}
+```
+### Notes:
+- **Input Validation**: The method will return the original string if:
+  - The input is null, empty, or not exactly 11 characters.
+  - You can combine this with the `IsValid` method from `NationalRegisterNumberGenerator` for additional validation.
+- **Flexible Usage**: Works seamlessly with any `string` containing a valid Belgian National Register Number.
 
 #### **Parameters**
 
