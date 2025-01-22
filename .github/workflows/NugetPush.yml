@@ -39,8 +39,4 @@ jobs:
           This release includes the latest changes and updates. Review the CHANGELOG for details.
         draft: false
         prerelease: false
-    - name: Publish to GitHub Packages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: dotnet nuget push ./artifacts/*.nupkg --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
 
