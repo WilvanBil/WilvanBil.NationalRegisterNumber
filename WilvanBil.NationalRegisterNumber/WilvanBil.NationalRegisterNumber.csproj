@@ -4,17 +4,21 @@
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>WilvanBil.$(AssemblyName)</PackageId>
-    <Authors>WilvanBil, Willy Alde</Authors>
+    <PackageId>WilvanBil.NationalRegisterNumber</PackageId>
+    <Authors>Willy Alde</Authors>
     <Description>Generate Belgian national register numbers based on parameters.</Description>
-    <PackageProjectUrl>https://github.com/WilvanBil/NationalRegisterNumber</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/WilvanBil/NationalRegisterNumber</RepositoryUrl>
+    <RepositoryUrl>https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber</RepositoryUrl>
     <PackageTags>WilvanBil Belgium Belgian National Register Registry Number Unit Integration Testing</PackageTags>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.1</Version>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © WilvanBil 2025</Copyright>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,4 +29,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="bin\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
+  
 </Project>
