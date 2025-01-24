@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.2.0"></a>
+## [2.2.0](https://www.github.com/WilvanBil/NationalRegisterNumber/releases/tag/v2.2.0) (2025-01-24)
+
+### Features
+
+* Added an icon to the package ([74d55fe](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/74d55fe13ca068ca905de013693ad79a5777eb70))
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://www.github.com/WilvanBil/NationalRegisterNumber/releases/tag/v2.1.1) (2025-01-23)
 
