@@ -1,4 +1,4 @@
-
+![Package Icon](./WilvanBil.NationalRegisterNumber/images/icon.png)
 # National Register Number
 
 **National Register Number** is a .NET package for generating and validating Belgian national register numbers. The logic is based on the [Official Documentation by the Belgian Government](https://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf).
