@@ -1,23 +1,29 @@
 ﻿{
-  "changelog": {
-    "header": "Changelog",
-    "includeAllCommits": false,
-    "sections": [
-      {
-        "type": "feat",
-        "section": "Features",
-        "hidden": false
-      },
-      {
-        "type": "fix",
-        "section": "Bug Fixes",
-        "hidden": false
-      },
-      {
-        "type": "perf",
-        "section": "Performance",
-        "hidden": false
-      }
-    ]
-  }
+    "changelog": {
+        "header": "Changelog",
+        "includeAllCommits": false,
+        "sections": [
+            {
+                "type": "feat",
+                "section": "Features",
+                "hidden": false
+            },
+            {
+                "type": "fix",
+                "section": "Bug Fixes",
+                "hidden": false
+            },
+            {
+                "type": "perf",
+                "section": "Performance",
+                "hidden": false
+            }
+        ]
+    },
+    "CommitParser": {
+        "HeaderPatterns": [
+            "^Merged PR \\\\d+: (?<type>\\w*)(?:\\((?<scope>.*)\\))?(?<breakingChangeMarker>!)?: (?<subject>.*)$",
+            "^Pull Request \\\\d+: (?<type>\\w*)(?:\\((?<scope>.*)\\))?(?<breakingChangeMarker>!)?: (?<subject>.*)$"
+        ]
+    }
 }
