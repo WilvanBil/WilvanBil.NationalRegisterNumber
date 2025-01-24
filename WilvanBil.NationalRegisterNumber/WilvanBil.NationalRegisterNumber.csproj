@@ -7,38 +7,42 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>2.1.1</Version>
     <PackageId>WilvanBil.NationalRegisterNumber</PackageId>
     <Authors>Willy Alde</Authors>
     <Description>Generate Belgian national register numbers based on parameters.</Description>
     <PackageProjectUrl>https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>WilvanBil Belgium Belgian National Register Registry Number Unit Integration Testing</PackageTags>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © WilvanBil 2025</Copyright>
-    <Version>2.1.1</Version>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageIcon>assets/icon.png</PackageIcon>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  
-  <ItemGroup>
     <None Include="$(OutputPath)WilvanBil.NationalRegisterNumber.xml">
       <Pack>true</Pack>
       <PackagePath>lib\$(TargetFramework)\</PackagePath>
     </None>
+    <None Include="images/icon.png" Pack="true" PackagePath="assets/" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Remove="bin\**" />
     <None Remove="obj\**" />
   </ItemGroup>
-  
+
 </Project>
