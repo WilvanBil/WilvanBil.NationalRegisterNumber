@@ -23,12 +23,8 @@ public static class NationalRegisterNumberGenerator
     /// <returns><c>true</c> if the number is valid; otherwise, <c>false</c>.</returns>
     public static bool IsValid(string nationalRegisterNumber)
     {
-        // Sanitize input
-        if (string.IsNullOrEmpty(nationalRegisterNumber))
-            return false;
-
         // Filter input
-        string numbersOnly = new(nationalRegisterNumber.Trim().Where(x => char.IsDigit(x)).ToArray());
+        string numbersOnly = new(nationalRegisterNumber.Where(x => char.IsDigit(x)).ToArray());
 
         // Check null and length
         if (string.IsNullOrEmpty(numbersOnly) || numbersOnly.Length != NationalRegisterNumberLength)
