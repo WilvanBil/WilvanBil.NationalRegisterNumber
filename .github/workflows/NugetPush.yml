@@ -37,6 +37,6 @@ jobs:
         release_name: v${{ github.event.inputs.tag_name }}
         body: |
           This release includes the latest changes and updates. Review the CHANGELOG for details.
-        draft: false
+        draft: true
         prerelease: false
 
