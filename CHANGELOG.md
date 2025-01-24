@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file. See [versio
 
 * Added an icon to the package ([74d55fe](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/74d55fe13ca068ca905de013693ad79a5777eb70))
 
+### Performance
+
+* Improves the IsValid method by removing some redundant checks ([90410a9](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/commit/90410a9e0dab6f7b0316868603f7556756defd1d))
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://www.github.com/WilvanBil/NationalRegisterNumber/releases/tag/v2.1.1) (2025-01-23)
 
