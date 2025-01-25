@@ -7,7 +7,7 @@
 
 ## Checklist
 
-- [ ] **Pull Request Title** is following the Conventional Commits specification `<type>[optional scope]: [optional link to issue]<description>` e.g. `fix(formatting): #12 Fixed usecase that caused exception`.
+- [ ] **Pull Request Title** is following the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) specification `<type>[optional scope]: [optional link to issue]<description>` e.g. `fix(formatting): #12 Fixed usecase that caused exception`.
 - [ ] **Unit tests** have been added or updated for the feature/bug.
 - [ ] **XML summaries** have been added for every public method, class, enum, etc.
 - [ ] **README.md** has been updated with new or changed information.
