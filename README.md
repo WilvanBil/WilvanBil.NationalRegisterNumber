@@ -1,12 +1,14 @@
+
+# NationalRegisterNumber
+
 ![Package Icon](./WilvanBil.NationalRegisterNumber/images/icon.png)
 
 [![NuGet](https://img.shields.io/nuget/v/WilvanBil.NationalRegisterNumber.svg)](https://www.nuget.org/packages/WilvanBil.NationalRegisterNumber)
 [![GitHub release](https://img.shields.io/github/v/release/WilvanBil/WilvanBil.NationalRegisterNumber)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/releases)
 [![Build](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions/workflows/NugetPush.yml/badge.svg)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions)
 [![Tests](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions/workflows/tests.yml/badge.svg)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions)
-# National Register Number
 
-**National Register Number** is a .NET package for generating and validating Belgian national register numbers. The logic is based on the [Official Documentation by the Belgian Government](https://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf).
+**NationalRegisterNumber** is a .NET package for generating and validating Belgian national register numbers. The logic is based on the [Official Documentation by the Belgian Government](https://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf).
 
 ---
 
@@ -15,7 +17,7 @@
 - **Validation**: Verify if a given national register number is valid.
 - **Generation**: Generate valid national register numbers with flexible parameters such as birth date and biological sex.
 - **Formatting**: Can format a `string` to `YY.MM.DD-XXX.CC` format using `ToFormattedNationalRegisterNumber()` string extension method.
-- **Extraction**: Can extract `DateOnly` birthdate and `BiologicalSex`.
+- **Extraction**: Can extract `DateOnly` birthdate and `BiologicalSex` using `TryExtractBirthDate` and `TryExtractBiologicalSex` string extension method.
 
 ---
 
@@ -86,7 +88,7 @@ Console.WriteLine(formattedNumber); // Output: 90.02.02-003.95
 
 ### **Extraction**
 
-You can extract `DateOnly` or `BiologicalSex`, however it will not check for full validity of the given input.
+You can extract `DateOnly` or `BiologicalSex` using `TryExtractBiologicalSex` and `TryExtractBirthDate`, however it will not check for full validity of the given input.
 For this you can use the `IsValid` method.
 
 ```csharp
