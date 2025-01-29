@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.3.0"></a>
+## [2.3.0](https://www.github.com/WilvanBil/NationalRegisterNumber/releases/tag/v2.3.0) (2025-01-29)
+
+### Features
+
+* Added birthdate and sex extraction. ([ad3f446](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/ad3f4464d383aacb972894142cea3f3ed8afd038))
+
+### Bug Fixes
+
+* Updated `README.md` with usage of extraction functionality. ([1b3b43a](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/1b3b43abcfcd7240b60a42295171776fccddb0cf))
+
+### Performance
+
+* Corrected branch name in tests workflow ([1efcd59](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/1efcd59e9e8de68efe69f2608559d60bfd47f88f))
+* Create tests.yml ([6679f64](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/6679f647486048fa7cd264725e68951d8a854ff7))
+* Simplified test command in workflow ([39123e7](https://www.github.com/WilvanBil/NationalRegisterNumber/commit/39123e73cefa391005f5687b9bf6067d17258159))
+
 <a name="2.2.0"></a>
 ## [2.2.0](https://www.github.com/WilvanBil/NationalRegisterNumber/releases/tag/v2.2.0) (2025-01-24)
 

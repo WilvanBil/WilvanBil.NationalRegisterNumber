@@ -12,7 +12,7 @@
     <!-- NuGet Package Settings -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>2.2.0</Version>
+    <Version>2.3.0</Version>
     <PackageId>WilvanBil.NationalRegisterNumber</PackageId>
     <Authors>Willy Alde</Authors>
     <Description>Generate, validate, extract data and format Belgian national register numbers.</Description>
