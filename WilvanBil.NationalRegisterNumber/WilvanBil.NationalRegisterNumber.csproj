@@ -4,22 +4,33 @@
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- Symbol & Debugging Support -->
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <!-- NuGet Package Settings -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>2.2.0</Version>
     <PackageId>WilvanBil.NationalRegisterNumber</PackageId>
     <Authors>Willy Alde</Authors>
-    <Description>Generate Belgian national register numbers based on parameters.</Description>
+    <Description>Generate, validate, and format Belgian national register numbers.</Description>
+
+    <!-- Repository & Project Links -->
     <PackageProjectUrl>https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>WilvanBil Belgium Belgian National Register Registry Number Unit Integration Testing</PackageTags>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+
+    <!-- License & Compliance -->
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!-- Additional Metadata -->
+    <PackageTags>WilvanBil Belgium Belgian National Register Registry Number Unit Integration Testing</PackageTags>
     <Copyright>Copyright © WilvanBil 2025</Copyright>
+
+    <!-- NuGet Package Icon -->
     <PackageIcon>assets/icon.png</PackageIcon>
   </PropertyGroup>
 
