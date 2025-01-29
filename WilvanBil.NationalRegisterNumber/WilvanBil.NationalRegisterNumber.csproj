@@ -16,6 +16,7 @@
     <PackageId>WilvanBil.NationalRegisterNumber</PackageId>
     <Authors>Willy Alde</Authors>
     <Description>Generate, validate, extract data and format Belgian national register numbers.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <!-- Repository & Project Links -->
     <PackageProjectUrl>https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber</PackageProjectUrl>
@@ -35,7 +36,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\README.md">
+    <None Include="README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
