@@ -4,9 +4,13 @@
 ![Package Icon](./WilvanBil.NationalRegisterNumber/images/banner.png)
 
 [![NuGet](https://img.shields.io/nuget/v/WilvanBil.NationalRegisterNumber.svg)](https://www.nuget.org/packages/WilvanBil.NationalRegisterNumber)
+![NuGet Downloads](https://img.shields.io/nuget/dt/WilvanBil.NationalRegisterNumber)
 [![GitHub release](https://img.shields.io/github/v/release/WilvanBil/WilvanBil.NationalRegisterNumber)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/releases)
 [![Build](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions/workflows/NugetPush.yml/badge.svg)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions)
 [![Tests](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions/workflows/tests.yml/badge.svg)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0-blue)
+![License](https://img.shields.io/github/license/WilvanBil/WilvanBil.NationalRegisterNumber)
+![Contributors](https://img.shields.io/github/contributors/WilvanBil/WilvanBil.NationalRegisterNumber)
 
 **NationalRegisterNumber** is a .NET package for generating and validating Belgian national register numbers. The logic is based on the [Official Documentation by the Belgian Government](https://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf).
 
