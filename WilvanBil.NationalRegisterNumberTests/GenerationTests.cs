@@ -3,7 +3,7 @@ using Xunit;
 
 namespace WilvanBil.NationalRegisterNumber.UnitTests;
 
-public class NationalRegisterNumberGenerationTests
+public class GenerationTests
 {
     [Fact]
     public void GenerateWithBirthdateAndFollowNumberShouldWork()

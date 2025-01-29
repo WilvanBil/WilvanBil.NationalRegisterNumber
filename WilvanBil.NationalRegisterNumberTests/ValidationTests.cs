@@ -4,7 +4,7 @@ using Xunit;
 
 namespace WilvanBil.NationalRegisterNumber.UnitTests;
 
-public class NationalRegisterNumberValidationTests
+public class ValidationTests
 {
     [Theory]
     [InlineData("90022742191")]

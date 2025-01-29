@@ -3,7 +3,7 @@ using Xunit;
 
 namespace WilvanBil.NationalRegisterNumber.UnitTests;
 
-public class NationalRegisterNumberExtensionsTests
+public class FormattingTests
 {
     [Theory]
     [InlineData("90022742191", "90.02.27-421.91")]
