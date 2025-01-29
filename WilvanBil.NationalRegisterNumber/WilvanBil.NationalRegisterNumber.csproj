@@ -48,10 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="bin\**" />
     <None Remove="obj\**" />
   </ItemGroup>
