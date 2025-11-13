@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32414.318
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11205.157 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WilvanBil.NationalRegisterNumber", "WilvanBil.NationalRegisterNumber\WilvanBil.NationalRegisterNumber.csproj", "{CDD5937D-1D83-462F-8216-7C41D979ABEE}"
 EndProject
@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.versionize = .versionize
 		CHANGELOG.md = CHANGELOG.md
-		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		.github\workflows\NugetPush.yml = .github\workflows\NugetPush.yml
 		README.md = README.md
+		.github\workflows\tests.yml = .github\workflows\tests.yml
 	EndProjectSection
 EndProject
 Global
