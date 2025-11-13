@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://www.github.com/WilvanBil/WilvanBil.NationalRegisterNumber/releases/tag/v3.0.1) (2025-11-13)
+
+### Bug Fixes
+
+* **readme:** Updated packages and README.md ([b2ae2fc](https://www.github.com/WilvanBil/WilvanBil.NationalRegisterNumber/commit/b2ae2fcf14f97cbaf3013e5fdb215f052cb83f68))
+
 <a name="3.0.0"></a>
 ## [3.0.0](https://www.github.com/WilvanBil/WilvanBil.NationalRegisterNumber/releases/tag/v3.0.0) (2025-11-13)
 
