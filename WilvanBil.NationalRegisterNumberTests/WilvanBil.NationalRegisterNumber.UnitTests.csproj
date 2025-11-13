@@ -1,15 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Lock FluentAssertions to below version 8.0.0 because version 8 requires payment. -->
-    <PackageReference Include="FluentAssertions" Version="[7.1.0,8.0.0)" />
     <PackageReference Include="FsCheck" Version="3.0.1" />
     <PackageReference Include="FsCheck.Xunit" Version="3.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />

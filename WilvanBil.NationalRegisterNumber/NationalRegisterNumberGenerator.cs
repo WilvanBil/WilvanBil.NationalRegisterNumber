@@ -3,6 +3,14 @@ namespace WilvanBil.NationalRegisterNumber;
 /// <summary>
 /// Provides methods to generate and validate Belgian national register numbers.
 /// </summary>
+/// <remarks>
+/// Belgian national register numbers follow the format YY.MM.DD-XXX.CC where:
+/// <list type="bullet">
+/// <item><description>YYMMDD: Birth date (2-digit year, month, day)</description></item>
+/// <item><description>XXX: Follow number (001-998), with odd=male, even=female based on last digit</description></item>
+/// <item><description>CC: Checksum (97 - (first 9 digits % 97)), with special handling for births after 1999</description></item>
+/// </list>
+/// </remarks>
 public static class NationalRegisterNumberGenerator
 {
     private const int NationalRegisterNumberLength = 11;
@@ -19,8 +27,22 @@ public static class NationalRegisterNumberGenerator
     /// <summary>
     /// Validates whether a given string is a valid Belgian national register number.
     /// </summary>
-    /// <param name="nationalRegisterNumber">The national register number to validate.</param>
+    /// <param name="nationalRegisterNumber">The national register number to validate. Can be formatted (YY.MM.DD-XXX.CC) or unformatted (11 digits).</param>
     /// <returns><c>true</c> if the number is valid; otherwise, <c>false</c>.</returns>
+    /// <remarks>
+    /// This method validates the checksum according to the official Belgian specification.
+    /// For births after 1999, the checksum calculation prepends '2' to the first 9 digits.
+    /// The method automatically filters out non-digit characters, so formatted strings are accepted.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// bool isValid = NationalRegisterNumberGenerator.IsValid("90022742191");
+    /// // isValid = true
+    /// 
+    /// bool isFormatted = NationalRegisterNumberGenerator.IsValid("90.02.27-421.91");
+    /// // isFormatted = true (same number, formatted)
+    /// </code>
+    /// </example>
     public static bool IsValid(string nationalRegisterNumber)
     {
         // Filter input
@@ -61,12 +83,23 @@ public static class NationalRegisterNumberGenerator
     /// <summary>
     /// Generates a Belgian national register number based on a given birth date and follow number.
     /// </summary>
-    /// <param name="birthDate">The birth date of the individual.</param>
-    /// <param name="followNumber">The follow number (1-998) for the individual.</param>
-    /// <returns>The generated national register number.</returns>
+    /// <param name="birthDate">The birth date of the individual. Must be on or after 1900-01-01.</param>
+    /// <param name="followNumber">The follow number (1-998) for the individual. Odd numbers indicate male, even numbers indicate female.</param>
+    /// <returns>The generated 11-digit national register number as an unformatted string.</returns>
     /// <exception cref="ArgumentException">
-    /// Thrown if the birth date is before the minimum allowed date or the follow number is out of range.
+    /// Thrown if the birth date is before 1900-01-01 or the follow number is not between 1 and 998 (inclusive).
     /// </exception>
+    /// <remarks>
+    /// The checksum is automatically calculated based on the birth date and follow number.
+    /// For births after 1999, the checksum calculation prepends '2' to ensure correct validation.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// var birthDate = new DateOnly(1990, 2, 27);
+    /// string number = NationalRegisterNumberGenerator.Generate(birthDate, 421);
+    /// // Returns: "90022742191"
+    /// </code>
+    /// </example>
     public static string Generate(DateOnly birthDate, int followNumber)
     {
         // Sanitize
@@ -94,48 +127,68 @@ public static class NationalRegisterNumberGenerator
     }
 
     /// <summary>
-    /// Generates a random valid Belgian national register number.
+    /// Generates a random valid Belgian national register number with a random birth date and follow number.
     /// </summary>
-    /// <returns>The generated national register number.</returns>
+    /// <returns>The generated 11-digit national register number.</returns>
+    /// <remarks>
+    /// The birth date will be randomly selected between 1900-01-01 and today's date.
+    /// The follow number and biological sex will be randomly determined.
+    /// </remarks>
     public static string Generate() => Generate(GenerateBirthDate(), GenerateFollowNumber());
 
     /// <summary>
     /// Generates a Belgian national register number for a given birth date with a random follow number.
     /// </summary>
-    /// <param name="birthDate">The birth date of the individual.</param>
-    /// <returns>The generated national register number.</returns>
+    /// <param name="birthDate">The birth date of the individual. Must be on or after 1900-01-01.</param>
+    /// <returns>The generated 11-digit national register number.</returns>
+    /// <exception cref="ArgumentException">Thrown if the birth date is before 1900-01-01.</exception>
     public static string Generate(DateOnly birthDate) => Generate(birthDate, GenerateFollowNumber());
 
     /// <summary>
     /// Generates a Belgian national register number for a random birth date and a follow number based on the given biological sex.
     /// </summary>
-    /// <param name="sex">The biological sex of the individual.</param>
-    /// <returns>The generated national register number.</returns>
+    /// <param name="sex">The biological sex of the individual (determines if follow number is odd or even).</param>
+    /// <returns>The generated 11-digit national register number.</returns>
+    /// <remarks>
+    /// Male: Follow number will have an odd last digit.
+    /// Female: Follow number will have an even last digit.
+    /// </remarks>
     public static string Generate(BiologicalSex sex) => Generate(GenerateBirthDate(), GenerateFollowNumber(sex));
 
     /// <summary>
     /// Generates a Belgian national register number for a given birth date and a follow number based on the given biological sex.
     /// </summary>
-    /// <param name="birthDate">The birth date of the individual.</param>
-    /// <param name="sex">The biological sex of the individual.</param>
-    /// <returns>The generated national register number.</returns>
+    /// <param name="birthDate">The birth date of the individual. Must be on or after 1900-01-01.</param>
+    /// <param name="sex">The biological sex of the individual (determines if follow number is odd or even).</param>
+    /// <returns>The generated 11-digit national register number.</returns>
+    /// <exception cref="ArgumentException">Thrown if the birth date is before 1900-01-01.</exception>
+    /// <remarks>
+    /// Male: Follow number will have an odd last digit.
+    /// Female: Follow number will have an even last digit.
+    /// </remarks>
     public static string Generate(DateOnly birthDate, BiologicalSex sex) => Generate(birthDate, GenerateFollowNumber(sex));
 
     /// <summary>
     /// Generates a Belgian national register number for a random birth date within the specified date range.
     /// </summary>
-    /// <param name="minDate">The minimum birth date in the range.</param>
-    /// <param name="maxDate">The maximum birth date in the range.</param>
-    /// <returns>The generated national register number.</returns>
+    /// <param name="minDate">The minimum birth date in the range (inclusive).</param>
+    /// <param name="maxDate">The maximum birth date in the range (inclusive).</param>
+    /// <returns>The generated 11-digit national register number.</returns>
+    /// <exception cref="ArgumentException">Thrown if minDate is after maxDate.</exception>
     public static string Generate(DateOnly minDate, DateOnly maxDate) => Generate(GenerateBirthDate(minDate, maxDate));
 
     /// <summary>
     /// Generates a Belgian national register number for a random birth date within the specified date range and a follow number based on the given biological sex.
     /// </summary>
-    /// <param name="minDate">The minimum birth date in the range.</param>
-    /// <param name="maxDate">The maximum birth date in the range.</param>
-    /// <param name="sex">The biological sex of the individual.</param>
-    /// <returns>The generated national register number.</returns>
+    /// <param name="minDate">The minimum birth date in the range (inclusive).</param>
+    /// <param name="maxDate">The maximum birth date in the range (inclusive).</param>
+    /// <param name="sex">The biological sex of the individual (determines if follow number is odd or even).</param>
+    /// <returns>The generated 11-digit national register number.</returns>
+    /// <exception cref="ArgumentException">Thrown if minDate is after maxDate.</exception>
+    /// <remarks>
+    /// Male: Follow number will have an odd last digit.
+    /// Female: Follow number will have an even last digit.
+    /// </remarks>
     public static string Generate(DateOnly minDate, DateOnly maxDate, BiologicalSex sex) => Generate(GenerateBirthDate(minDate, maxDate), sex);
 
     private static int GenerateFollowNumber(BiologicalSex sex)
