@@ -184,7 +184,7 @@ dotnet test
 
 ---
 
-## ?? WARNING
+## ⚠️ WARNING
 
 This package is intended for **testing and research purposes only**. Do **not** use it in a live or production environment. It is specifically designed for **unit and integration testing** scenarios.
 
