@@ -1,4 +1,3 @@
-
 # NationalRegisterNumber
 
 ![Package Icon](./WilvanBil.NationalRegisterNumber/images/banner.png)
@@ -8,7 +7,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/WilvanBil/WilvanBil.NationalRegisterNumber)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/releases)
 [![Build](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions/workflows/NugetPush.yml/badge.svg)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions)
 [![Tests](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions/workflows/tests.yml/badge.svg)](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/actions)
-![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0-blue)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue)
 ![License](https://img.shields.io/github/license/WilvanBil/WilvanBil.NationalRegisterNumber)
 ![Contributors](https://img.shields.io/github/contributors/WilvanBil/WilvanBil.NationalRegisterNumber)
 
@@ -20,8 +19,8 @@
 
 - **Validation**: Verify if a given national register number is valid.
 - **Generation**: Generate valid national register numbers with flexible parameters such as birth date and biological sex.
-- **Formatting**: Can format a `string` to `YY.MM.DD-XXX.CC` format using `ToFormattedNationalRegisterNumber()` string extension method.
-- **Extraction**: Can extract `DateOnly` birthdate and `BiologicalSex` using `TryExtractBirthDate` and `TryExtractBiologicalSex` string extension method.
+- **Formatting**: Format a `string` to `YY.MM.DD-XXX.CC` format using `ToFormattedNationalRegisterNumber()` string extension method.
+- **Extraction**: Extract `DateOnly` birthdate and `BiologicalSex` using `TryExtractBirthDate` and `TryExtractBiologicalSex` string extension methods.
 
 ---
 
@@ -66,7 +65,7 @@ string number = NationalRegisterNumberGenerator.Generate(DateOnly birthDate, int
 #### **Parameters**
 
 - **`followNumber`**: A number between `1` and `998` (inclusive). This parameter helps ensure uniqueness when generating numbers for the same date.
-- `minDate` must be greater than or equal to `1900/01/01`.
+- **`minDate`**: Must be greater than or equal to `1900-01-01`.
 
 ##### **Exceptions**
 
@@ -92,8 +91,8 @@ Console.WriteLine(formattedNumber); // Output: 90.02.02-003.95
 
 ### **Extraction**
 
-You can extract `DateOnly` or `BiologicalSex` using `TryExtractBiologicalSex` and `TryExtractBirthDate`, however it will not check for full validity of the given input.
-For this you can use the `IsValid` method.
+You can extract `DateOnly` or `BiologicalSex` using `TryExtractBiologicalSex` and `TryExtractBirthDate`. Note that these methods do not check for full validity of the given input.
+For full validation, use the `IsValid` method first.
 
 ```csharp
 var nationalRegisterNumber = "90020200395";
@@ -110,7 +109,6 @@ if (nationalRegisterNumber.TryExtractBirthDate(out var birthDate))
     Console.WriteLine($"Birth Date: {birthDate}"); 
 else
     Console.WriteLine("Invalid birth date.");
-
 ```
 
 ---
@@ -124,7 +122,7 @@ bool isValid = NationalRegisterNumberGenerator.IsValid("90022742191");
 Console.WriteLine($"Is valid: {isValid}");
 ```
 
-### Generate and format a Random National Register Number
+### Generate and Format a Random National Register Number
 
 ```csharp
 string randomNumber = NationalRegisterNumberGenerator.Generate();
@@ -139,7 +137,7 @@ string numberBySex = NationalRegisterNumberGenerator.Generate(BiologicalSex.Male
 string numberByDateAndSex = NationalRegisterNumberGenerator.Generate(new DateOnly(1990, 1, 1), BiologicalSex.Female);
 ```
 
-### Extract birthdate
+### Extract Birthdate
 
 ```csharp
 var nationalRegisterNumber = "90020200395";
@@ -148,7 +146,6 @@ if (nationalRegisterNumber.TryExtractBirthDate(out var birthDate))
     Console.WriteLine($"Birth Date: {birthDate}"); 
 else
     Console.WriteLine("Invalid birth date.");
-
 ```
 
 ---
@@ -175,7 +172,7 @@ We welcome contributions to this package! To get started:
 
 ### Issues
 
-For any issues, requests or any other kind of feedback, please consider creating an [issue](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/issues/new?template=Blank+issue).
+For any issues, requests, or feedback, please consider creating an [issue](https://github.com/WilvanBil/WilvanBil.NationalRegisterNumber/issues/new?template=Blank+issue).
 
 ### Running Tests
 
@@ -187,7 +184,7 @@ dotnet test
 
 ---
 
-## !! WARNING
+## ?? WARNING
 
 This package is intended for **testing and research purposes only**. Do **not** use it in a live or production environment. It is specifically designed for **unit and integration testing** scenarios.
 

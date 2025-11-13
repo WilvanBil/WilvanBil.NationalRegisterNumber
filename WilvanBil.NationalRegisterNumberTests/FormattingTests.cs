@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using Xunit;
+﻿using Xunit;
 
 namespace WilvanBil.NationalRegisterNumber.UnitTests;
 
@@ -17,6 +16,33 @@ public class FormattingTests
         var result = input.ToFormattedNationalRegisterNumber();
 
         // Assert
-        result.Should().Be(expected);
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("   ")]
+    [InlineData("          ")]
+    public void ToFormattedNationalRegisterNumber_WithNullOrWhitespace_ReturnsOriginal(string? input)
+    {
+        // Act
+        var result = input!.ToFormattedNationalRegisterNumber();
+
+        // Assert
+        Assert.Equal(input, result);
+    }
+
+    [Theory]
+    [InlineData("12345")] // Too short
+    [InlineData("123456789012")] // Too long
+    [InlineData("1234567890")] // 10 chars
+    [InlineData("123456789012345")] // 15 chars
+    public void ToFormattedNationalRegisterNumber_WithInvalidLength_ReturnsOriginal(string input)
+    {
+        // Act
+        var result = input.ToFormattedNationalRegisterNumber();
+
+        // Assert
+        Assert.Equal(input, result);
     }
 }
