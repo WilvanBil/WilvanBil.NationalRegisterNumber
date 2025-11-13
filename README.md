@@ -1,6 +1,6 @@
 # NationalRegisterNumber
 
-![Package Icon](./WilvanBil.NationalRegisterNumber/images/banner.png)
+![Package Icon](https://raw.githubusercontent.com/WilvanBil/WilvanBil.NationalRegisterNumber/488c27ebfe8a64df7f20aa8c313a74a72f71c9a0/WilvanBil.NationalRegisterNumber/images/banner.png)
 
 [![NuGet](https://img.shields.io/nuget/v/WilvanBil.NationalRegisterNumber.svg)](https://www.nuget.org/packages/WilvanBil.NationalRegisterNumber)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/WilvanBil.NationalRegisterNumber)
